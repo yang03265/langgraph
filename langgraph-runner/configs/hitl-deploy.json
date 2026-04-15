@@ -1,0 +1,41 @@
+{
+  "pattern": "hitl",
+  "model": "gemini-2.0-flash",
+  "hitl_enabled": true,
+  "name": "Deployment Pipeline with Approval Gates",
+  "description": "Deploy code changes through approval gates: plan, code review, and deployment notification.",
+  "system_prompt": "You are a deployment orchestrator. Create a detailed deployment plan first, then execute code changes and send deployment notifications. Always be explicit about what you intend to do at each step. Request human approval before executing sensitive operations.",
+  "tools": [
+    {
+      "name": "code_exec",
+      "description": "Execute deployment scripts or run tests—no approval required",
+      "params": ["code"]
+    },
+    {
+      "name": "write_data",
+      "description": "Write code or configuration changes—requires human approval",
+      "params": ["target", "content"],
+      "requires_approval": true
+    },
+    {
+      "name": "send_notification",
+      "description": "Send deployment notifications to team—requires human approval",
+      "params": ["recipient", "message"],
+      "requires_approval": true
+    }
+  ],
+  "checkpoints": [
+    {
+      "after_node": "plan",
+      "prompt": "Agent has created a deployment plan. Review and approve to proceed?"
+    },
+    {
+      "before_tool": "write_data",
+      "prompt": "Agent wants to write code/config changes. Review the changes and approve?"
+    },
+    {
+      "before_tool": "send_notification",
+      "prompt": "Agent wants to notify the team of deployment. Approve?"
+    }
+  ]
+}

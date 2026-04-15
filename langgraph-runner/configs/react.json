@@ -1,0 +1,26 @@
+{
+  "pattern": "react",
+  "model": "gemini-2.0-flash",
+  "name": "Research ReAct Agent",
+  "description": "A ReAct agent that iteratively reasons and calls tools.",
+  "system_prompt": "You are a research assistant. Use your tools iteratively to answer questions thoroughly. Always reason step-by-step before calling a tool. After using tools, synthesize the results into a comprehensive answer.",
+  "max_iterations": 5,
+  "stop_condition": "task_complete",
+  "tools": [
+    {
+      "name": "web_search",
+      "description": "Search the web for current information",
+      "params": ["query"]
+    },
+    {
+      "name": "calculator",
+      "description": "Evaluate mathematical expressions",
+      "params": ["expression"]
+    },
+    {
+      "name": "summarize",
+      "description": "Summarize a long text passage",
+      "params": ["text"]
+    }
+  ]
+}

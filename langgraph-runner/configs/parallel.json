@@ -1,0 +1,26 @@
+{
+  "pattern": "parallel",
+  "model": "gemini-2.0-flash",
+  "name": "Parallel Tool Execution",
+  "description": "Dispatch multiple tool calls simultaneously and synthesize results.",
+  "parallel_fan_out": true,
+  "merge_strategy": "synthesize",
+  "system_prompt": "You are a financial analyst. Fan out ALL available tool calls in parallel simultaneously, then synthesize a comprehensive investment brief from the combined results.",
+  "tools": [
+    {
+      "name": "fetch_stock_price",
+      "description": "Get current stock price for a ticker symbol",
+      "params": ["ticker"]
+    },
+    {
+      "name": "fetch_news",
+      "description": "Get recent news headlines for a topic",
+      "params": ["topic"]
+    },
+    {
+      "name": "fetch_financials",
+      "description": "Get company financial summary and key metrics",
+      "params": ["company"]
+    }
+  ]
+}

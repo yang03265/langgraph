@@ -1,0 +1,41 @@
+{
+  "pattern": "hitl",
+  "model": "gemini-2.0-flash",
+  "hitl_enabled": true,
+  "name": "Human-in-the-Loop Agent",
+  "description": "Agent pauses at critical decision points to request human approval before proceeding.",
+  "system_prompt": "You are a data pipeline agent. First create a detailed plan, then read data, then request approval before any write or notification operations. Be explicit about what you intend to do at each step.",
+  "tools": [
+    {
+      "name": "read_data",
+      "description": "Read records from a data source",
+      "params": ["source"]
+    },
+    {
+      "name": "write_data",
+      "description": "Write or modify data — requires human approval",
+      "params": ["target", "content"],
+      "requires_approval": true
+    },
+    {
+      "name": "send_notification",
+      "description": "Send alert or notification — requires human approval",
+      "params": ["recipient", "message"],
+      "requires_approval": true
+    }
+  ],
+  "checkpoints": [
+    {
+      "after_node": "plan",
+      "prompt": "Agent has created an execution plan. Approve to proceed?"
+    },
+    {
+      "before_tool": "write_data",
+      "prompt": "Agent wants to write data. Review and approve?"
+    },
+    {
+      "before_tool": "send_notification",
+      "prompt": "Agent wants to send notifications. Approve?"
+    }
+  ]
+}

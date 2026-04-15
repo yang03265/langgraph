@@ -1,0 +1,26 @@
+{
+  "pattern": "react",
+  "model": "gemini-2.0-flash",
+  "name": "Code Debugging Assistant",
+  "description": "A ReAct agent that debugs code, searches for solutions, and writes fixes.",
+  "system_prompt": "You are a code debugging specialist. Analyze code problems, search for solutions online, and execute code to test fixes. Always think through the issue step-by-step before writing code. After implementing a fix, verify it works correctly.",
+  "max_iterations": 8,
+  "stop_condition": "task_complete",
+  "tools": [
+    {
+      "name": "code_exec",
+      "description": "Execute Python code and see the output or error messages",
+      "params": ["code"]
+    },
+    {
+      "name": "web_search",
+      "description": "Search the web for documentation, Stack Overflow answers, or error solutions",
+      "params": ["query"]
+    },
+    {
+      "name": "write_data",
+      "description": "Write the corrected code to a file",
+      "params": ["target", "content"]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "pattern": "react",
+  "model": "gemini-2.0-flash",
+  "name": "Quick Calculator Assistant",
+  "description": "A minimal ReAct agent with a single tool—useful as a template.",
+  "system_prompt": "You are a quick calculator. When asked a math problem, use the calculator tool to solve it. Be concise in your responses.",
+  "max_iterations": 2,
+  "stop_condition": "task_complete",
+  "tools": [
+    {
+      "name": "calculator",
+      "description": "Evaluate mathematical expressions and return numeric results",
+      "params": ["expression"]
+    }
+  ]
+}

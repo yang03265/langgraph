@@ -1,0 +1,26 @@
+{
+  "pattern": "supervisor",
+  "model": "gemini-2.0-flash",
+  "name": "Supervisor + Worker Agents",
+  "description": "A supervisor LLM routes subtasks to specialized worker agents.",
+  "system_prompt": "",
+  "max_rounds": 6,
+  "supervisor": {
+    "system_prompt": "You are an orchestrator. Analyze the task and delegate to workers: researcher, coder, or writer. Use delegate_to_researcher, delegate_to_coder, or delegate_to_writer tools. When all work is done, call finish() with the final synthesized answer.",
+    "workers": ["researcher", "coder", "writer"]
+  },
+  "workers": {
+    "researcher": {
+      "system_prompt": "You are a research specialist. Find facts, synthesize information, and return a concise summary of your findings.",
+      "tools": ["web_search"]
+    },
+    "coder": {
+      "system_prompt": "You are a coding specialist. Write clean, well-commented, production-ready code. Include error handling and type hints.",
+      "tools": ["code_exec"]
+    },
+    "writer": {
+      "system_prompt": "You are a writing specialist. Craft clear, engaging, well-structured content tailored for a technical audience.",
+      "tools": []
+    }
+  }
+}

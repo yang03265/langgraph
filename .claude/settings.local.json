@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git config:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(node -e ':*)",
+      "Bash(ls -lh /Users/jasonpeng/Documents/Langgraph/langgraph-runner/configs/react-*.json /Users/jasonpeng/Documents/Langgraph/langgraph-runner/configs/supervisor-product.json /Users/jasonpeng/Documents/Langgraph/langgraph-runner/configs/parallel-research.json /Users/jasonpeng/Documents/Langgraph/langgraph-runner/configs/hitl-deploy.json)",
+      "Bash(curl -s -I http://localhost:5173)"
     ]
   }
 }

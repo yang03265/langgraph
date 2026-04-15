@@ -1,0 +1,26 @@
+{
+  "pattern": "parallel",
+  "model": "gemini-2.0-flash",
+  "name": "Multi-Source Research Aggregator",
+  "description": "Gather information from multiple research sources in parallel and synthesize comprehensive insights.",
+  "system_prompt": "You are a research aggregator. Simultaneously search the web, fetch news headlines, and summarize findings to provide a comprehensive overview of a topic. Fan out all available tools in parallel, then synthesize the results into a clear, well-structured report.",
+  "parallel_fan_out": true,
+  "merge_strategy": "synthesize",
+  "tools": [
+    {
+      "name": "web_search",
+      "description": "Search the web for articles and detailed information on a topic",
+      "params": ["query"]
+    },
+    {
+      "name": "fetch_news",
+      "description": "Get recent news headlines and breaking news on a topic",
+      "params": ["topic"]
+    },
+    {
+      "name": "summarize",
+      "description": "Summarize long-form content into key points",
+      "params": ["text"]
+    }
+  ]
+}
